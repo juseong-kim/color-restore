@@ -1,0 +1,63 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{{url_for('static', filename='index.js')}}"></script>
+{{super()}}
+{% endblock %}
+
+{% block title %}
+Color Restore
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row relative">
+    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+      <h1 class="pt-5 pb-2">Color Restore v1</h1>
+
+      <p class="lead">Upload a grayscale image to see it in color.</p>
+
+      <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <label class="btn btn-primary h-100">
+          {{ form.photo(class="", id="file-form") }}
+        </label>
+          
+        <label class="btn btn-secondary h-100">
+          Colorize! {{ form.submit(class="d-none") }}
+        </label>
+        
+      </form>
+
+      {% for error in form.photo.errors %}
+        <span class="font-weight-bold ml-3 row mt-1" style="color: #6e5876;">{{ error }}</span>
+      {% endfor %}
+
+      {% if file_url %}
+      <div class="row mt-3">
+        <div class="col-md-6">
+          Original<br>
+          <img class="img-fluid" src="{{ file_url }}"/>
+        </div>
+        <div class="col-md-6 my-3 my-md-0">
+          Colorized<br>
+          <img class="img-fluid" src="data:image/png;base64,{{byte64image | safe}}"/>
+        </div>
+      </div>
+    
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

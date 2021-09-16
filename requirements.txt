@@ -1,0 +1,15 @@
+cryptography
+flask
+gunicorn
+pillow
+python-dotenv
+timeago
+Flask-Bootstrap4==4.0.2
+Flask-WTF==0.15.1
+WTForms==2.3.3
+numpy==1.18.5
+scipy==1.4.1
+torch==1.8.1
+torchvision==0.9.1
+https://storage.googleapis.com/model_storage_lazarus/fastai-lzr-1.0.61.tar.gz
+git+https://github.com/maxcountryman/flask-uploads.git@f66d7dc
